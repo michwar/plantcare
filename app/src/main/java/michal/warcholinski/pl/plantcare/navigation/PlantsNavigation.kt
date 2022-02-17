@@ -4,6 +4,7 @@ import androidx.navigation.*
 import androidx.navigation.compose.composable
 import michal.warcholinski.pl.plantcare.myplants.MyPlantsScreen
 import michal.warcholinski.pl.plantcare.myplants.PlantDetails
+import michal.warcholinski.pl.plantcare.myplants.addplant.AddPlantScreen
 import michal.warcholinski.pl.plantcare.navigation.bottomnavigation.BottomNavDirection
 import michal.warcholinski.pl.plantcare.navigation.bottomnavigation.NavigationDirection
 
@@ -21,6 +22,10 @@ fun NavGraphBuilder.plantsGraph(navController: NavController) {
 			})) { navBackStackEntry ->
 			val plantId = navBackStackEntry.arguments?.getLong("plantId") ?: 0
 			PlantDetails(id = plantId)
+		}
+
+		composable(NavigationDirection.AddPlant.route) {
+			AddPlantScreen { navController.popBackStack() }
 		}
 	}
 }
