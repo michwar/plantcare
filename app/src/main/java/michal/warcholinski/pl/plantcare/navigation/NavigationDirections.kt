@@ -10,10 +10,12 @@ sealed class NavigationDirection(val route: String) {
 	object PlantDetails : NavigationDirection("plant/{plantId}") {
 		fun withArgs(plantId: Long) = "plant/$plantId"
 	}
+
+	object AddPlant : NavigationDirection("addPlant")
 }
 
 sealed class BottomNavDirection(val name: String, val icon: Int, route: String) : NavigationDirection(route) {
 	object Home : BottomNavDirection("Home", R.drawable.ic_home, "home")
-	object MyPlants : BottomNavDirection("My plants", R.drawable.ic_plant, "my_plants")
+	object MyPlants : BottomNavDirection("My plants", R.drawable.ic_plant, "myPlants")
 	object Search : BottomNavDirection("Search", R.drawable.ic_search, "search")
 }

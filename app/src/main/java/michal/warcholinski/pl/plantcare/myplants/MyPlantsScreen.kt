@@ -7,8 +7,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -34,11 +35,20 @@ fun MyPlantsScreen(navController: NavController) {
 	val viewModel: MyPlantsViewModel = hiltViewModel()
 	val plants by viewModel.plants.observeAsState(initial = emptyList())
 
-	Column(modifier = Modifier.fillMaxSize()) {
-		LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.fillMaxWidth()) {
-			items(plants) { plant ->
-				PlantListRow(plant = plant) { plantId -> navController.navigate(NavigationDirection.PlantDetails.withArgs(plantId = plantId)) }
+	Scaffold(floatingActionButton = {
+		FloatingActionButton(
+			onClick = { navController.navigate(NavigationDirection.AddPlant.route) },
+			modifier = Modifier.size(48.dp)) {
+			Icon(Icons.Default.Add, "Add plant", modifier = Modifier.size(24.dp))
+		}
+	}) {
+		Column(modifier = Modifier.fillMaxSize()) {
+			LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.fillMaxWidth()) {
+				items(plants) { plant ->
+					PlantListRow(plant = plant) { plantId -> navController.navigate(NavigationDirection.PlantDetails.withArgs(plantId = plantId)) }
+				}
 			}
+
 		}
 	}
 }
