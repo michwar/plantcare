@@ -44,7 +44,7 @@ fun MyPlantsScreen(navController: NavController) {
 	}) {
 		Column(modifier = Modifier.fillMaxSize()) {
 			LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.fillMaxWidth()) {
-				items(plants) { plant ->
+				items(items = plants, key = { plant -> plant.id }) { plant ->
 					PlantListRow(plant = plant) { plantId -> navController.navigate(NavigationDirection.PlantDetails.withArgs(plantId = plantId)) }
 				}
 			}
