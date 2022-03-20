@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PlantCare</string>
+
+    <string name="plant_name">Plant name</string>
+    <string name="plant_place">Where is a plant</string>
+    <string name="plant_desc">Description</string>
+    <string name="plant_watering">Watering already?</string>
+    <string name="last_watering_date">Last watering date</string>
+    <string name="add_plant">Add plant</string>
+
 </resources>
