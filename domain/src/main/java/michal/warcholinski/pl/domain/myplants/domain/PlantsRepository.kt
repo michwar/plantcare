@@ -9,4 +9,6 @@ import michal.warcholinski.pl.domain.myplants.model.PlantDataModel
 interface PlantsRepository {
 
 	fun getMyPlants(): Flow<List<PlantDataModel>>
+
+	suspend fun addPlant(name: String, place: String, wateringDate: Long?, desc: String): Result<Boolean>
 }

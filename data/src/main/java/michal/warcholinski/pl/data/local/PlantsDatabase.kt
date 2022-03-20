@@ -9,7 +9,7 @@ import michal.warcholinski.pl.data.local.entity.PlantEntity
  * Created by Michał Warcholiński on 2022-02-13.
  */
 @Database(entities = [PlantEntity::class],
-	version = 1,
+	version = 2,
 	exportSchema = false)
 internal abstract class PlantsDatabase : RoomDatabase() {
 

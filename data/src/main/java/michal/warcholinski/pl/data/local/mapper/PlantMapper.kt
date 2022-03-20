@@ -10,8 +10,8 @@ import javax.inject.Inject
 internal class PlantMapper @Inject constructor() {
 
 	fun mapToDataModel(entity: PlantEntity) =
-		PlantDataModel(entity.id!!, entity.name, entity.desc, entity.lastWateringDate, entity.addedDate)
+		PlantDataModel(entity.id!!, entity.name, entity.place, entity.desc, entity.lastWateringDate, entity.addedDate)
 
 	fun mapToEntity(model: PlantDataModel) =
-		PlantEntity(model.id, model.name, model.desc, model.lastWateringDate, model.addedDate)
+		PlantEntity(model.id, model.name, model.place, model.desc, model.lastWateringDate, model.addedDate)
 }

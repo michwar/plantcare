@@ -1,11 +1,13 @@
 package michal.warcholinski.pl.data.impl
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import michal.warcholinski.pl.data.local.dao.PlantDao
+import michal.warcholinski.pl.data.local.entity.PlantEntity
 import michal.warcholinski.pl.data.local.mapper.PlantMapper
 import michal.warcholinski.pl.domain.myplants.domain.PlantsRepository
 import michal.warcholinski.pl.domain.myplants.model.PlantDataModel
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -17,13 +19,13 @@ internal class PlantsRepositoryImpl @Inject constructor(
 ) : PlantsRepository {
 
 	override fun getMyPlants(): Flow<List<PlantDataModel>> {
-		/*return dao.getAll()
-			.map {
-				it.map { plantEntity -> plantMapper.mapToDataModel(plantEntity) }
-			}*/
+		return dao.getAll()
+			.map { plants ->
+				plants.map { plantEntity -> plantMapper.mapToDataModel(plantEntity) }
+			}
 
-		return flowOf(listOf(
-			PlantDataModel(1, "Plant1", "desc1", 0, 0),
+		/*return flowOf(listOf(
+			PlantDataModel(1, "Plant1", "","desc1", 0, 0),
 			PlantDataModel(2, "Plant2", "desc1", 0, 0),
 			PlantDataModel(3, "Plant3", "desc1", 0, 0),
 			PlantDataModel(4, "Plant4", "desc1", 0, 0),
@@ -38,6 +40,12 @@ internal class PlantsRepositoryImpl @Inject constructor(
 			PlantDataModel(13, "Plant13", "desc1", 0, 0),
 			PlantDataModel(14, "Plant14", "desc1", 0, 0),
 			PlantDataModel(15, "Plant15", "desc1", 0, 0),
-		))
+		))*/
+	}
+
+	override suspend fun addPlant(name: String, place: String, wateringDate: Long?, desc: String): Result<Boolean> {
+		dao.insert(PlantEntity(null, name, place, desc, wateringDate, Date().time))
+
+		return Result.success(true)
 	}
 }

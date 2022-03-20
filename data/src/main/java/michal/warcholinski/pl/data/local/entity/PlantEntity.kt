@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "plant")
 internal data class PlantEntity(@PrimaryKey(autoGenerate = true) val id: Long?,
                                 val name: String,
+                                val place: String,
                                 val desc: String,
                                 @ColumnInfo(name = "last_watering_date") val lastWateringDate: Long?,
                                 @ColumnInfo(name = "added_date") val addedDate: Long)
